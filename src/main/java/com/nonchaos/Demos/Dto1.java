@@ -43,6 +43,10 @@ public class Dto1 {
     this.birthday = birthday;
   }
 
+  public String getGender() {
+    return sex;
+  }
+
   @Override
   public String toString() {
     return "[name: " + this.getName() +
