@@ -1,6 +1,7 @@
 package com.nonchaos.Redis;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
@@ -13,8 +14,8 @@ public class RedisUtils {
   @Autowired
   private RedisTemplate redisTemplate;
 
-//  @Autowired
-//  private StringRedisTemplate stringRedisTemplate;
+  @Autowired
+  private StringRedisTemplate stringRedisTemplate;
 
   public Boolean hasKey(String key) {
     return key != null ? this.redisTemplate.hasKey(key) : false;
@@ -30,6 +31,12 @@ public class RedisUtils {
     }
   }
 
+  public void setString(String key, String value) {
+    if (null != key) {
+      this.stringRedisTemplate.opsForValue().set(key, value);
+    }
+  }
+
   public void set(String key, Object value, long time) {
     if (null != key) {
       this.set(key, value);
@@ -40,4 +47,8 @@ public class RedisUtils {
   public Long increment(String key, long delta) {
     return this.redisTemplate.opsForValue().increment(key, delta);
   }
+
+//  public RedisTemplate<String, String> getRedisTemplate(RedisConnectionFactory factory) {
+//
+//  }
 }

@@ -18,7 +18,8 @@ public class RedisServiceImpl implements RedisService {
 
   @Override
   public void testRedis(RequestDto requestDto) {
-    redisUtils.set("weather", "good");
+//    redisUtils.set("weather", "cloudy");
+    redisUtils.setString("weather", "mixed");
     if (redisUtils.get("weather") != null) {
       logger.info("The value for key [weather] is,{}", redisUtils.get("weather"));
     }

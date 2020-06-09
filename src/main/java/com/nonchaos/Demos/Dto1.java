@@ -11,6 +11,12 @@ public class Dto1 {
 
   private Date birthday;
 
+  public Dto1() {}
+
+  public Dto1(String name) {
+    this.name = name;
+  }
+
   public String getName() {
     return name;
   }
